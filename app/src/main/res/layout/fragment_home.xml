@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.HomeFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants">
+            <RelativeLayout
+                android:id="@+id/topArticleContainer"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/colorGrey">
+                <ImageView
+                    android:id="@+id/topArticleImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:scaleType="centerCrop"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:id="@+id/topArticleTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:layout_above="@id/topArticleDate"/>
+
+                    <TextView
+                        android:id="@+id/topArticleDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:textSize="12sp"
+                        android:drawablePadding="5dp"
+                        android:drawableStart="@drawable/ic_access_time"
+                        android:textColor="@color/colorWhite"/>
+
+                    <TextView
+                        android:id="@+id/topArticleCommentCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:textSize="12sp"
+                        android:drawablePadding="5dp"
+                        android:drawableStart="@drawable/ic_mode_comment"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@id/topArticleDate"
+                        android:textColor="@color/colorWhite"
+                        android:text="100"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/articleRecyclerView"
+                android:layout_below="@id/topArticleContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"/>
+        </RelativeLayout>
+    </ScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

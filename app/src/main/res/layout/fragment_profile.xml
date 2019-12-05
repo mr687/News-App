@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.ProfileFragment"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="@dimen/main_elevation"
+            app:cardCornerRadius="10dp"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="12dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="centerCrop"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_launcher_background"/>
+
+                <TextView
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/labelLogin"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_login"
+                    android:textAllCaps="true"
+                    android:clickable="true"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/labelWelcome"
+                    android:layout_toEndOf="@id/profileImage"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_welcome"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/labelRegisterNow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_register_now"
+                    android:layout_below="@id/labelWelcome"
+                    android:layout_toEndOf="@id/labelNotRegister"
+                    android:textSize="16sp"
+                    android:clickable="true"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:id="@+id/labelNotRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_not_registered"
+                    android:layout_marginEnd="8dp"
+                    android:layout_toEndOf="@id/profileImage"
+                    android:layout_below="@id/labelWelcome"/>
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="@dimen/main_elevation"
+            app:cardCornerRadius="10dp"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="10dp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:id="@+id/profileListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:divider="@android:color/transparent"
+                    android:scrollbars="none"
+                    android:overScrollMode="never"
+                    android:dividerHeight="0dp"/>
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+</ScrollView>

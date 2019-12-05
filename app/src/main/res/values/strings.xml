@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">News App</string>
+    <string name="nav_title_home">Home</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_welcome">Welcome!</string>
+    <string name="label_not_registered">Not registered?</string>
+    <string name="label_register_now">Register Now</string>
+    <string name="label_login">Login</string>
+    <string name="nav_title_category">Category</string>
+    <string name="nav_title_video">Video</string>
+    <string name="nav_title_favorite">Favorite</string>
+    <string name="nav_title_profile">Profile</string>
+    <string name="label_hint_email">Email</string>
+    <string name="label_hint_password">Password</string>
+    <string name="label_forgot_password">Forgot Password?</string>
+    <string name="label_register">Register</string>
+    <string name="label_hint_name">Name</string>
+    <string name="label_already_have_an_account">Already have an account?</string>
+    <string name="label_login_now">Login Now</string>
+    <string name="label_by_creating_an_account_you_agree_with_our">By creating an account, you agree with our</string>
+    <string name="label_terms_privacy"><![CDATA[Terms & Privacy]]></string>
+    <string name="label_share">Share</string>
+    <string name="label_send_to">Send to</string>
+
+    <string-array name="profile_menu_titles">
+        <item>Privacy Policy</item>
+        <item>Rate</item>
+        <item>More</item>
+        <item>About</item>
+    </string-array>
+
+    <string-array name="profile_menu_descriptions">
+        <item>App Terms &amp; Policies</item>
+        <item>Give your rate and feedback</item>
+        <item>More apps from developer</item>
+    </string-array>
+
+    <string-array name="profile_menu_icons">
+        <item>@drawable/ic_lock</item>
+        <item>@drawable/ic_rate_review</item>
+        <item>@drawable/ic_more</item>
+        <item>@drawable/ic_info</item>
+    </string-array>
+</resources>
