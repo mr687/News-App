@@ -3,15 +3,14 @@ package me.sedaph.newsapp.ui.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import me.sedaph.newsapp.R
 import me.sedaph.newsapp.adapter.ArticlesAdapter
@@ -20,11 +19,13 @@ import me.sedaph.newsapp.model.Article.ResultArticle
 import me.sedaph.newsapp.rest.APIService
 import me.sedaph.newsapp.rest.RestClient
 import me.sedaph.newsapp.ui.activity.DetailActivity
+import me.sedaph.newsapp.utils.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.net.InetAddress
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(){
     private var mApiService: APIService? = null
     private var mAdapter: ArticlesAdapter? = null
     private val mArticles: MutableList<Article> = ArrayList()
@@ -36,13 +37,11 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         category_id = arguments?.getInt("id", 0)
-
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         mApiService = RestClient.client.create(APIService::class.java)
 
         mAdapter = ArticlesAdapter(context, mArticles)
@@ -57,11 +56,9 @@ class HomeFragment : Fragment() {
     private fun fetchArticles(){
         val call = mApiService!!.fetchArticles(0,10,0,category_id)
         call.enqueue(object: Callback<ResultArticle>{
-            override fun onFailure(call: Call<ResultArticle>, t: Throwable) {
-//                Log.d("TAGG", t.message)
-            }
-
+            override fun onFailure(call: Call<ResultArticle>, t: Throwable) {}
             override fun onResponse(call: Call<ResultArticle>, response: Response<ResultArticle>) {
+                mArticles.clear()
                 val result = response.body()
                 if(result != null && result.status){
                     val popular = result.popular!!

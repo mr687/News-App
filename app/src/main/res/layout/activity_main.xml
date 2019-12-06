@@ -23,12 +23,16 @@
         app:itemHorizontalTranslationEnabled="true"
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"/>
 
-    <FrameLayout
-        android:id="@+id/fragmentContainer"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/mainSwipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbarContainer"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_above="@id/bottomNavigation"/>
+        android:layout_above="@id/bottomNavigation">
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

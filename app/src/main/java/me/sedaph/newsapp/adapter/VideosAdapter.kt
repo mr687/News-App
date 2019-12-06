@@ -33,7 +33,8 @@ class VideosAdapter(private val context: Context?,
     }
 
     override fun onBindViewHolder(holder: VideoHolder, position: Int) {
-        val video: Article = videos.get(position)
+        val video: Article = videos[position]
+
         holder.videoTitle.text = video.title
         holder.videoCommentCount.text = video.comment_count!!.toString()
         holder.videoCategory.text = video.category
@@ -41,7 +42,8 @@ class VideosAdapter(private val context: Context?,
 
         holder.videoCardView.setOnClickListener {
             val intent = Intent(context, DetailActivity::class.java)
-            context?.startActivity(intent)
+            intent.putExtra("position", video.id!!)
+            context!!.startActivity(intent)
         }
 
         holder.videoThumbnail.initialize(Constants.API_KEY_YOUTUBE, object: OnInitializedListener{
@@ -52,14 +54,12 @@ class VideosAdapter(private val context: Context?,
                 p1?.setVideo(video.videoId)
                 p1?.setOnThumbnailLoadedListener(object: YouTubeThumbnailLoader.OnThumbnailLoadedListener{
                     override fun onThumbnailLoaded(p0: YouTubeThumbnailView?, p1: String) {
-                        Log.d("TAGG", p1)
                     }
 
                     override fun onThumbnailError(
                         p0: YouTubeThumbnailView?,
                         p1: YouTubeThumbnailLoader.ErrorReason
                     ) {
-                        Log.d("TAGG", p1.toString())
                     }
 
                 })
@@ -76,12 +76,12 @@ class VideosAdapter(private val context: Context?,
     }
 
     class VideoHolder(view: View):RecyclerView.ViewHolder(view) {
-        val videoTitle = view.videoTitle
-        val videoCategory = view.videoCategory
-        val videoDate = view.videoDate
-        val videoCommentCount = view.videoCommentCount
-        val videoCardView = view.videoCardView
-        val videoThumbnail = view.videoThumbnail
+        val videoTitle = view.videoTitle!!
+        val videoCategory = view.videoCategory!!
+        val videoDate = view.videoDate!!
+        val videoCommentCount = view.videoCommentCount!!
+        val videoCardView = view.videoCardView!!
+        val videoThumbnail = view.videoThumbnail!!
     }
 
 }

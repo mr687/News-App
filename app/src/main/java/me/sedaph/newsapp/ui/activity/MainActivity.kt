@@ -1,18 +1,23 @@
 package me.sedaph.newsapp.ui.activity
 
-import android.content.Intent
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_toolbar.*
 import me.sedaph.newsapp.R
 import me.sedaph.newsapp.ui.fragment.*
+import me.sedaph.newsapp.utils.App
 
 class MainActivity : AppCompatActivity() {
 
@@ -74,25 +79,30 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.navSearch -> {
-                val intent = Intent(this, SearchActivity::class.java)
-                startActivity(intent)
+        val manager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchItem = menu?.findItem(R.id.navSearch)
+        val searchView  = searchItem?.actionView as SearchView
+
+        searchView.setSearchableInfo(manager.getSearchableInfo(componentName))
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
+                searchView.setQuery("", false)
+                searchItem.collapseActionView()
                 return true
             }
-            else -> {
-                return super.onOptionsItemSelected(item)
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
             }
-        }
+        })
+        return true
     }
 
     private fun setUpToolbar(){
         setSupportActionBar(toolbar)
-        supportActionBar!!.title = ""
+        supportActionBar!!.title = "News App"
     }
 
     private fun addFragment() {

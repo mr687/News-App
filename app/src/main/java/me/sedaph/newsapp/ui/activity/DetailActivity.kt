@@ -38,7 +38,7 @@ class DetailActivity :
         mAPIService = RestClient.client.create(APIService::class.java)
 
         val position: Int = intent.getIntExtra("position", 0)
-        Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_LONG).show()
+//        Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_LONG).show()
 
         fetchArticle(position)
     }
@@ -80,6 +80,7 @@ class DetailActivity :
     private fun setUpToolbar(){
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_backspace)
         setSupportActionBar(toolbar)
+        supportActionBar!!.title = ""
         toolbar.setNavigationOnClickListener { finish() }
     }
 

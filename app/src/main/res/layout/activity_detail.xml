@@ -1,100 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorGrey"
+    android:id="@+id/detailSwipeRefresh"
     tools:context=".ui.activity.DetailActivity">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3dp"
+                app:contentPadding="15dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/articleTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Judul berita"
+                        android:textStyle="bold"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:id="@+id/articleCategory"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Technology"
+                        android:layout_below="@id/articleTitle"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="4dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:background="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/articleDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dp"
+                        android:drawableStart="@drawable/ic_access_time"
+                        android:text="September 04, 2019 55:11:22"
+                        android:layout_below="@id/articleCategory"/>
+
+                    <TextView
+                        android:id="@+id/articleCommentCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dp"
+                        android:drawableStart="@drawable/ic_mode_comment"
+                        android:text="100"
+                        android:layout_below="@id/articleCategory"
+                        android:layout_alignParentEnd="true"/>
+
+                    <TextView
+                        android:id="@+id/articleContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="lorem ipsum dolor sit amet"
+                        android:layout_below="@id/articleCommentCount"
+                        android:layout_marginTop="15dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="3 Comment"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_below="@id/articleContent"
+                        android:layout_marginTop="15dp"/>
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+            android:id="@+id/toolbarContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardUseCompatPadding="true"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="3dp"
-            app:contentPadding="15dp">
+            layout="@layout/detail_toolbar"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-                <TextView
-                    android:id="@+id/articleTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Judul berita"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:id="@+id/articleCategory"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Technology"
-                    android:layout_below="@id/articleTitle"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
-                    android:paddingStart="4dp"
-                    android:paddingEnd="4dp"
-                    android:layout_marginBottom="5dp"
-                    android:textColor="?attr/colorOnPrimary"
-                    android:background="@color/colorPrimary"/>
-
-                <TextView
-                    android:id="@+id/articleDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="5dp"
-                    android:drawableStart="@drawable/ic_access_time"
-                    android:text="September 04, 2019 55:11:22"
-                    android:layout_below="@id/articleCategory"/>
-
-                <TextView
-                    android:id="@+id/articleCommentCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="5dp"
-                    android:drawableStart="@drawable/ic_mode_comment"
-                    android:text="100"
-                    android:layout_below="@id/articleCategory"
-                    android:layout_alignParentEnd="true"/>
-
-                <TextView
-                    android:id="@+id/articleContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="lorem ipsum dolor sit amet"
-                    android:layout_below="@id/articleCommentCount"
-                    android:layout_marginTop="15dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="3 Comment"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_below="@id/articleContent"
-                    android:layout_marginTop="15dp"/>
-
-            </RelativeLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-    </androidx.core.widget.NestedScrollView>
-
-    <include
-        android:id="@+id/toolbarContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/detail_toolbar"/>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

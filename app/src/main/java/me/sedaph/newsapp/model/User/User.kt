@@ -1,4 +1,4 @@
-package me.sedaph.newsapp.model
+package me.sedaph.newsapp.model.User
 
 data class User(
     val id: Int,

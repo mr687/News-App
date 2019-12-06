@@ -25,35 +25,38 @@ class ArticlesAdapter (private val context: Context?,
         return ArticleHolder(root)
     }
 
+    fun getItem(positon: Int):Article{
+        return articles[positon]
+    }
+
     override fun getItemCount(): Int {
         return articles.size
     }
 
     override fun onBindViewHolder(holder: ArticleHolder, position: Int) {
         if (itemCount > 0) run {
-            var article: Article = articles.get(position)
+            var article: Article = articles[position]
 
             holder.articleContentPreview.text = article.contents!!
             holder.articleTitle.text = article.title!!
             holder.articleCommentCount.text = article.comment_count!!.toString()
             holder.articleDate.text = article.createAt
-
             Picasso.get().load(article.imageUrl).into(holder.articleImage)
-
             holder.articleCardView.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)
-                context?.startActivity(intent)
+                intent.putExtra("position", article.id!!)
+                context!!.startActivity(intent)
             }
         }
     }
 
     class ArticleHolder(view: View) : RecyclerView.ViewHolder(view){
-        val articleTitle = view.articleTitle
-        val articleContentPreview= view.articleContentPreview
-        val articleDate= view.articleDate
-        val articleCommentCount= view.articleCommentCount
-        val articleImage= view.articleImage
-        val articleCardView = view.articleCardView
+        val articleTitle = view.articleTitle!!
+        val articleContentPreview= view.articleContentPreview!!
+        val articleDate= view.articleDate!!
+        val articleCommentCount= view.articleCommentCount!!
+        val articleImage= view.articleImage!!
+        val articleCardView = view.articleCardView!!
     }
 
 }
