@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import me.sedaph.newsapp.model.User.User
 
 class Prefs (context: Context) {
-    private val PREFS_FILENAME = "me.sedaph.prefs"
+    val PREFS_FILENAME = "me.sedaph.prefs"
     private val USER_ID = "uid"
     private val USER_IMAGE = "user_image"
     private val USER_NAME = "user_name"

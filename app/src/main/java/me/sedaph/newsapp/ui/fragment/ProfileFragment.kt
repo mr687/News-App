@@ -8,14 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import me.sedaph.newsapp.R
 import me.sedaph.newsapp.adapter.ProfileAdapter
 import me.sedaph.newsapp.ui.activity.LoginActivity
 import me.sedaph.newsapp.ui.activity.RegisterActivity
+import me.sedaph.newsapp.utils.Prefs
 
 class ProfileFragment: Fragment(), View.OnClickListener{
+    private var prefs: Prefs? = null
     private var mAdapter: ProfileAdapter? = null
 
     override fun onCreateView(
@@ -30,6 +33,8 @@ class ProfileFragment: Fragment(), View.OnClickListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        prefs = context?.let { Prefs(it) }
+        loadUserData()
         labelLogin.setOnClickListener(this)
         labelRegisterNow.setOnClickListener(this)
 
@@ -67,6 +72,18 @@ class ProfileFragment: Fragment(), View.OnClickListener{
                         .show()
                 }
             }
+        }
+    }
+
+    private fun loadUserData(){
+        if(prefs!!.userName != null){
+            labelWelcome.text = "Welcome, ${prefs!!.userName}!"
+            if(prefs!!.userImage != null){
+                Picasso.get().load(prefs!!.userImage).into(profileImage)
+            }
+            labelNotRegister.visibility = View.GONE
+            labelRegisterNow.visibility = View.GONE
+            labelLogin.visibility = View.GONE
         }
     }
 

@@ -17,17 +17,18 @@ import me.sedaph.newsapp.rest.APIService
 import me.sedaph.newsapp.rest.RestClient
 import me.sedaph.newsapp.utils.App
 import me.sedaph.newsapp.utils.Prefs
-import me.sedaph.newsapp.utils.prefs
 import retrofit2.Call
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+    private var prefs: Prefs? = null
     private var mApiService: APIService? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         mApiService = RestClient.client.create(APIService::class.java)
+        prefs = Prefs(this)
 
         registerNow.setOnClickListener { openRegister() }
         actionLogin.setOnClickListener { login() }
