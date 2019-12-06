@@ -16,7 +16,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
-
+            <ProgressBar
+                android:id="@+id/thumbnailLoding"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"/>
 
             <com.google.android.youtube.player.YouTubeThumbnailView
             android:id="@+id/videoThumbnail"

@@ -73,7 +73,7 @@ class DetailActivity :
                         Picasso.get().load(article.imageUrl!!)
                             .into(articleImage)
                         articleImage.visibility = View.VISIBLE
-                        detailThumbnailView.visibility = View.GONE
+                        videoThumbnailContainer.visibility = View.GONE
                         articleImage.setOnClickListener {
                             val intent = Intent(applicationContext, PhotoViewActivity::class.java)
                             intent.putExtra("imageUrl", article.imageUrl!!)
@@ -81,8 +81,8 @@ class DetailActivity :
                         }
                     }else if(article.type == 1){
                         articleImage.visibility = View.GONE
-                        detailThumbnailView.visibility = View.VISIBLE
-                        detailThumbnailView.setOnClickListener {
+                        videoThumbnailContainer.visibility = View.VISIBLE
+                        videoThumbnailContainer.setOnClickListener {
                             val intent = Intent(applicationContext, StreamActivity::class.java)
                             intent.putExtra("videoId", article.videoId)
                             startActivity(intent)

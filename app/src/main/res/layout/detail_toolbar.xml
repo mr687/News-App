@@ -20,14 +20,26 @@
             app:layout_collapseMode="parallax"
             app:layout_collapseParallaxMultiplier="0.5"/>
 
-        <com.google.android.youtube.player.YouTubeThumbnailView
+        <RelativeLayout
+            android:id="@+id/videoThumbnailContainer"
             android:visibility="gone"
-            android:id="@+id/detailThumbnailView"
-            android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_collapseMode="parallax"
-            app:layout_collapseParallaxMultiplier="0.5"/>
+            android:layout_height="match_parent">
+
+            <com.google.android.youtube.player.YouTubeThumbnailView
+                android:id="@+id/detailThumbnailView"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.5"/>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_play_circle"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
