@@ -38,8 +38,9 @@ class SplashActivity : AppCompatActivity() {
 
         if(prefs!!.userToken != null){
             Toast.makeText(this, "Welcome back, ${prefs!!.userName}", Toast.LENGTH_LONG).show()
+        }else{
+            Toast.makeText(this, "Welcome to news app", Toast.LENGTH_LONG).show()
         }
-        Toast.makeText(this, "Welcome to news app", Toast.LENGTH_LONG).show()
     }
 
     public override fun onDestroy() {
