@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.widget.Toast
 import me.sedaph.newsapp.R
+import me.sedaph.newsapp.utils.App
 
 class SplashActivity : AppCompatActivity() {
     private var mDelayHandler: Handler? = null
@@ -28,6 +30,12 @@ class SplashActivity : AppCompatActivity() {
 
         //Navigate with delay
         mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
+
+        if(App.prefs!!.userToken != null){
+            Toast.makeText(this@SplashActivity, "Welcome back, ${App.prefs!!.userName}", Toast.LENGTH_LONG).show()
+        }else{
+            Toast.makeText(this@SplashActivity, "Welcome to news app", Toast.LENGTH_LONG).show()
+        }
     }
 
     public override fun onDestroy() {

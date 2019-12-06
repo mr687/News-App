@@ -16,6 +16,8 @@ import me.sedaph.newsapp.model.User.ResultLogin
 import me.sedaph.newsapp.rest.APIService
 import me.sedaph.newsapp.rest.RestClient
 import me.sedaph.newsapp.utils.App
+import me.sedaph.newsapp.utils.Prefs
+import me.sedaph.newsapp.utils.prefs
 import retrofit2.Call
 import retrofit2.Response
 
@@ -60,6 +62,7 @@ class LoginActivity : AppCompatActivity() {
                 if(!response.body()?.status!!){
                     Toast.makeText(this@LoginActivity, response.body()!!.message, Toast.LENGTH_SHORT).show()
                 }else{
+                    prefs!!.saveUser(response.body()?.user!!)
                     Toast.makeText(this@LoginActivity, response.body()!!.message, Toast.LENGTH_SHORT).show()
                     openMain()
                 }
