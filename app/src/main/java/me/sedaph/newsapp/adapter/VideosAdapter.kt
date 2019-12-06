@@ -43,6 +43,7 @@ class VideosAdapter(private val context: Context?,
         holder.videoCardView.setOnClickListener {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("position", video.id!!)
+            intent.putExtra("type", 1)
             context!!.startActivity(intent)
         }
 

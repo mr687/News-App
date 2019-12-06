@@ -25,6 +25,7 @@ interface APIService {
     @GET("articles")
     fun detailArticle(
         @Query("id") id: Int? = 0,
+        @Query("type") type: Int? = 0,
         @Query("limit") limit: Int? = 1
     ): Call<ResultDetailArticle>
 

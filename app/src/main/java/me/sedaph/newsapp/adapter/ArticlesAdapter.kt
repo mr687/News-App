@@ -45,6 +45,7 @@ class ArticlesAdapter (private val context: Context?,
             holder.articleCardView.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)
                 intent.putExtra("position", article.id!!)
+                intent.putExtra("type", 0)
                 context!!.startActivity(intent)
             }
         }

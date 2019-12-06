@@ -12,10 +12,13 @@ import me.sedaph.newsapp.utils.Constants
 
 class StreamActivity :
     YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
+    private var videoId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stream)
+
+        videoId = intent.getStringExtra("videoId")
 
         player.initialize(Constants.API_KEY_YOUTUBE,this)
     }
@@ -31,7 +34,7 @@ class StreamActivity :
         p2: Boolean
     ) {
         if(!p2){
-            p1?.cueVideo("wKJ9KzGQq0w")
+            p1?.cueVideo(videoId)
         }
     }
 
@@ -39,6 +42,5 @@ class StreamActivity :
         p0: YouTubePlayer.Provider?,
         p1: YouTubeInitializationResult?
     ) {
-        Log.d("TAGG", p1.toString())
     }
 }

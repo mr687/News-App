@@ -85,6 +85,7 @@ class HomeFragment : Fragment(){
     private fun openDetail(id: Int? = 0){
         val intent = Intent(context, DetailActivity::class.java)
         intent.putExtra("position", id)
+        intent.putExtra("type", 0)
         startActivity(intent)
     }
 }
