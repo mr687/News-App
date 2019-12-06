@@ -72,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/label_logout"
                     android:layout_below="@id/labelWelcome"
+                    android:textColor="@color/colorPrimary"
                     android:layout_toEndOf="@id/labelNotRegister"
                     android:textSize="16sp"
                     android:clickable="true"
