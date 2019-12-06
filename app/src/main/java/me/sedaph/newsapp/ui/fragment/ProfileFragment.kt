@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import me.sedaph.newsapp.R
 import me.sedaph.newsapp.adapter.ProfileAdapter
 import me.sedaph.newsapp.ui.activity.LoginActivity
+import me.sedaph.newsapp.ui.activity.MainActivity
 import me.sedaph.newsapp.ui.activity.RegisterActivity
 import me.sedaph.newsapp.utils.Prefs
 
@@ -84,7 +85,18 @@ class ProfileFragment: Fragment(), View.OnClickListener{
             labelNotRegister.visibility = View.GONE
             labelRegisterNow.visibility = View.GONE
             labelLogin.visibility = View.GONE
+            labelLogout.visibility = View.VISIBLE
+
+            labelLogout.setOnClickListener { logout() }
         }
+    }
+
+    private fun logout(){
+        prefs!!.removeAuth()
+        val intent = Intent(context, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
     }
 
     override fun onDestroyView() {

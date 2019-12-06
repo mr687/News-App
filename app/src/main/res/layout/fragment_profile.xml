@@ -42,7 +42,8 @@
                     android:textAllCaps="true"
                     android:clickable="true"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:focusable="true" />
 
                 <TextView
                     android:id="@+id/labelWelcome"
@@ -62,7 +63,20 @@
                     android:layout_toEndOf="@id/labelNotRegister"
                     android:textSize="16sp"
                     android:clickable="true"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:focusable="true" />
+                <TextView
+                    android:id="@+id/labelLogout"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_logout"
+                    android:layout_below="@id/labelWelcome"
+                    android:layout_toEndOf="@id/labelNotRegister"
+                    android:textSize="16sp"
+                    android:clickable="true"
+                    android:textStyle="bold"
+                    android:focusable="true" />
                 <TextView
                     android:layout_marginTop="3dp"
                     android:id="@+id/labelNotRegister"
