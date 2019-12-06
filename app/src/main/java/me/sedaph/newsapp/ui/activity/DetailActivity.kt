@@ -44,7 +44,7 @@ class DetailActivity :
 
         val position: Int = intent.getIntExtra("position", 0)
         val type: Int = intent.getIntExtra("type", 0)
-        Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_LONG).show()
+//        Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_LONG).show()
 
         fetchArticle(position, type)
     }
@@ -64,15 +64,14 @@ class DetailActivity :
                 if(result!!.status){
                     val article:Article = result.articles!!
 
-                    Picasso.get().load(article.imageUrl!!)
-                        .into(articleImage)
-
                     articleTitle.text = article.title!!
                     articleDate.text = article.createAt!!
                     articleCommentCount.text = article.comment_count!!.toString()
                     articleContent.text = article.contents!!
 
                     if(article.type == 0){
+                        Picasso.get().load(article.imageUrl!!)
+                            .into(articleImage)
                         articleImage.visibility = View.VISIBLE
                         detailThumbnailView.visibility = View.GONE
                         articleImage.setOnClickListener {
