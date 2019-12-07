@@ -2,14 +2,12 @@ package me.sedaph.newsapp.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_home.*
 import me.sedaph.newsapp.R
@@ -19,11 +17,9 @@ import me.sedaph.newsapp.model.Article.ResultArticle
 import me.sedaph.newsapp.rest.APIService
 import me.sedaph.newsapp.rest.RestClient
 import me.sedaph.newsapp.ui.activity.DetailActivity
-import me.sedaph.newsapp.utils.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.net.InetAddress
 
 class HomeFragment : Fragment(){
     private var mApiService: APIService? = null

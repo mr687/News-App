@@ -24,8 +24,10 @@ import me.sedaph.newsapp.R
 import me.sedaph.newsapp.model.Article.Article
 import me.sedaph.newsapp.model.Article.ResultArticle
 import me.sedaph.newsapp.model.Article.ResultDetailArticle
+import me.sedaph.newsapp.model.Article.ResultView
 import me.sedaph.newsapp.rest.APIService
 import me.sedaph.newsapp.rest.RestClient
+import me.sedaph.newsapp.utils.App
 import me.sedaph.newsapp.utils.Constants
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,8 +47,20 @@ class DetailActivity :
         val position: Int = intent.getIntExtra("position", 0)
         val type: Int = intent.getIntExtra("type", 0)
 //        Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_LONG).show()
-
         fetchArticle(position, type)
+    }
+
+    private fun viewUpdate(articleId: Int){
+        val call = mAPIService!!.viewUpdate(articleId)
+        call.enqueue(object: Callback<ResultView>{
+            override fun onFailure(call: Call<ResultView>, t: Throwable) {
+            }
+            override fun onResponse(call: Call<ResultView>, response: Response<ResultView>) {
+                if(response.body() != null){
+
+                }
+            }
+        })
     }
 
     private fun fetchArticle(position: Int? = 0, type: Int? = 0){
@@ -67,7 +81,9 @@ class DetailActivity :
                     articleTitle.text = article.title!!
                     articleDate.text = article.createAt!!
                     articleCommentCount.text = article.comment_count!!.toString()
-                    articleContent.text = article.contents!!
+                    articleContent.text = App.fromHtml(article.contents!!)
+
+                    viewUpdate(article.id!!)
 
                     if(article.type == 0){
                         Picasso.get().load(article.imageUrl!!)
@@ -140,10 +156,6 @@ class DetailActivity :
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-
-            R.id.navLove -> {
-                return true
-            }
 
             R.id.navShare -> {
                 val intent = Intent()

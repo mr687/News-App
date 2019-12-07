@@ -24,6 +24,9 @@
     <string name="label_share">Share</string>
     <string name="label_send_to">Send to</string>
     <string name="label_logout">Logout</string>
+    <string name="label_add_news">Add News</string>
+    <string name="label_hint_title">Title</string>
+    <string name="label_contents">Contents</string>
 
     <string-array name="profile_menu_titles">
         <item>Privacy Policy</item>
@@ -44,4 +47,18 @@
         <item>@drawable/ic_more</item>
         <item>@drawable/ic_info</item>
     </string-array>
+
+    <!-- Menu -->
+    <string name="menu_undo">Undo</string>
+    <string name="menu_redo">Redo</string>
+
+    <!-- Dialog -->
+    <string name="dialog_title">Insert link</string>
+    <string name="dialog_edit_hint">http(s)://</string>
+    <string name="dialog_button_ok">OK</string>
+    <string name="dialog_button_cancel">Cancel</string>
+    <string name="label_submit">Submit</string>
+    <string name="click_to_edit_contents">Click to edit contents</string>
+    <string name="action_post">Post</string>
+
 </resources>

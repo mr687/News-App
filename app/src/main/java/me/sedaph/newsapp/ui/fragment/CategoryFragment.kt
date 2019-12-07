@@ -59,7 +59,6 @@ class CategoryFragment: Fragment() {
                 call: Call<ResultCategory>,
                 response: Response<ResultCategory>
             ) {
-                Log.d("TAGG", response.toString())
                 val result = response.body()
                 if(result != null){
                     mCategories.addAll(result.categories!!)

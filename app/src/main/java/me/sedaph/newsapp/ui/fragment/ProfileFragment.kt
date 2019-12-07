@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import me.sedaph.newsapp.R
 import me.sedaph.newsapp.adapter.ProfileAdapter
+import me.sedaph.newsapp.ui.activity.AddNewsActivity
 import me.sedaph.newsapp.ui.activity.LoginActivity
 import me.sedaph.newsapp.ui.activity.MainActivity
 import me.sedaph.newsapp.ui.activity.RegisterActivity
@@ -88,6 +89,14 @@ class ProfileFragment: Fragment(), View.OnClickListener{
             labelLogout.visibility = View.VISIBLE
 
             labelLogout.setOnClickListener { logout() }
+
+            newsUserContainer.visibility = View.VISIBLE
+            newsUserContainer.setOnClickListener {
+                val intent = Intent(context, AddNewsActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                context!!.startActivity(intent)
+            }
         }
     }
 

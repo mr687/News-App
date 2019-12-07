@@ -35,6 +35,13 @@ dependencies {
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    //Rich text editor
+    implementation 'com.github.mthli:Knife:v1.1'
+
+    //Image picker
+    implementation 'com.github.dhaval2404:imagepicker:1.5'
+    implementation 'com.github.florent37:inline-activity-result-kotlin:1.0.1'
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'

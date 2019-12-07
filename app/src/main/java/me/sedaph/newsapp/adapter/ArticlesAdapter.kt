@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.item_article.view.*
 import me.sedaph.newsapp.R
 import me.sedaph.newsapp.model.Article.Article
 import me.sedaph.newsapp.ui.activity.DetailActivity
+import me.sedaph.newsapp.utils.App
 
 class ArticlesAdapter (private val context: Context?,
                        private val articles: List<Article>):
@@ -37,7 +38,7 @@ class ArticlesAdapter (private val context: Context?,
         if (itemCount > 0) run {
             var article: Article = articles[position]
 
-            holder.articleContentPreview.text = article.contents!!
+            holder.articleContentPreview.text = App.fromHtml(article.contents!!)
             holder.articleTitle.text = article.title!!
             holder.articleCommentCount.text = article.comment_count!!.toString()
             holder.articleDate.text = article.createAt
