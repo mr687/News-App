@@ -45,9 +45,9 @@ class MainActivity : AppCompatActivity() {
         when(item.itemId) {
             R.id.navHome -> {
                 if(prefs!!.layout!! == R.id.settingGrid){
-                    loadFragment(homeFragment)
-                }else{
                     loadFragment(gridFragment)
+                }else{
+                    loadFragment(homeFragment)
                 }
                 supportActionBar!!.title = "News App"
                 return@OnNavigationItemSelectedListener true
