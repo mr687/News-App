@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubeThumbnailLoader
 import com.google.android.youtube.player.YouTubeThumbnailView
@@ -32,6 +33,7 @@ import me.sedaph.newsapp.utils.Constants
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
 class DetailActivity :
     AppCompatActivity() {
@@ -46,18 +48,21 @@ class DetailActivity :
 
         val position: Int = intent.getIntExtra("position", 0)
         val type: Int = intent.getIntExtra("type", 0)
+
+        viewUpdate(position, type)
 //        Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_LONG).show()
-        fetchArticle(position, type)
     }
 
-    private fun viewUpdate(articleId: Int){
+    private fun viewUpdate(articleId: Int, type: Int){
         val call = mAPIService!!.viewUpdate(articleId)
         call.enqueue(object: Callback<ResultView>{
             override fun onFailure(call: Call<ResultView>, t: Throwable) {
             }
             override fun onResponse(call: Call<ResultView>, response: Response<ResultView>) {
                 if(response.body() != null){
-
+                    if(response.body()!!.status){
+                        fetchArticle(articleId, type)
+                    }
                 }
             }
         })
@@ -80,29 +85,34 @@ class DetailActivity :
 
                     articleTitle.text = article.title!!
                     articleDate.text = article.createAt!!
-                    articleCommentCount.text = article.comment_count!!.toString()
+                    articleCommentCount.text = article.views_count!!.toString()
                     articleContent.text = App.fromHtml(article.contents!!)
 
-                    viewUpdate(article.id!!)
-
+                    detailProgress.visibility = View.VISIBLE
                     if(article.type == 0){
                         Picasso.get().load(article.imageUrl!!)
-                            .into(articleImage)
-                        articleImage.visibility = View.VISIBLE
+                            .into(articleImage, object: com.squareup.picasso.Callback{
+                                override fun onSuccess() {
+                                    detailProgress.visibility = View.GONE
+                                    articleImage.visibility = View.VISIBLE
+                                    articleImage.setOnClickListener {
+                                        val intent = Intent(applicationContext, PhotoViewActivity::class.java)
+                                        intent.putExtra("imageUrl", article.imageUrl!!)
+                                        startActivity(intent)
+                                    }
+                                }
+
+                                override fun onError(e: Exception?) {
+                                    detailProgress.visibility = View.GONE
+                                    articleImage.visibility = View.VISIBLE
+                                    Picasso.get().load(R.drawable.no_photo)
+                                        .into(articleImage)
+                                }
+
+                            })
                         videoThumbnailContainer.visibility = View.GONE
-                        articleImage.setOnClickListener {
-                            val intent = Intent(applicationContext, PhotoViewActivity::class.java)
-                            intent.putExtra("imageUrl", article.imageUrl!!)
-                            startActivity(intent)
-                        }
                     }else if(article.type == 1){
                         articleImage.visibility = View.GONE
-                        videoThumbnailContainer.visibility = View.VISIBLE
-                        videoThumbnailContainer.setOnClickListener {
-                            val intent = Intent(applicationContext, StreamActivity::class.java)
-                            intent.putExtra("videoId", article.videoId)
-                            startActivity(intent)
-                        }
                         detailThumbnailView.initialize(Constants.API_KEY_YOUTUBE,
                             object: YouTubeThumbnailView.OnInitializedListener{
                                 override fun onInitializationSuccess(
@@ -115,7 +125,13 @@ class DetailActivity :
                                             p0: YouTubeThumbnailView?,
                                             p1: String?
                                         ) {
-
+                                            detailProgress.visibility = View.GONE
+                                            videoThumbnailContainer.visibility = View.VISIBLE
+                                            videoThumbnailContainer.setOnClickListener {
+                                                val intent = Intent(applicationContext, StreamActivity::class.java)
+                                                intent.putExtra("videoId", article.videoId)
+                                                startActivity(intent)
+                                            }
                                         }
 
                                         override fun onThumbnailError(
@@ -161,7 +177,7 @@ class DetailActivity :
                 val intent = Intent()
                 intent.action = Intent.ACTION_SEND
                 intent.type = "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT, "Halo sedaph!.")
+                intent.putExtra(Intent.EXTRA_TEXT, "Change text..")
                 startActivity(Intent.createChooser(intent, getString(R.string.label_send_to)))
                 return true
             }

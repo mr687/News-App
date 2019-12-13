@@ -4,6 +4,8 @@ data class Article(
     val id: Int? = null,
     val category_id: Int? = null,
     val comment_count: Int? = null,
+    val views_count: Int? = null,
+    val favorite_count: Int? = null,
     val title: String? = null,
     val contents: String? = null,
     val createAt: String? = null,

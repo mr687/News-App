@@ -60,5 +60,11 @@
     <string name="label_submit">Submit</string>
     <string name="click_to_edit_contents">Click to edit contents</string>
     <string name="action_post">Post</string>
+    <string name="settings_layout">Settings Layout</string>
+    <string name="sorting">Sort By :</string>
+    <string name="newest">Newest</string>
+    <string name="older">Older</string>
+    <string name="most_viewed">Most viewed</string>
+    <string name="fewest_views">Fewest Views</string>
 
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,12 +21,14 @@ import me.sedaph.newsapp.ui.activity.DetailActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
 class HomeFragment : Fragment(){
     private var mApiService: APIService? = null
     private var mAdapter: ArticlesAdapter? = null
     private val mArticles: MutableList<Article> = ArrayList()
     private var category_id: Int? = 0
+    private var allowRefresh: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,8 +52,8 @@ class HomeFragment : Fragment(){
         fetchArticles()
     }
 
-    private fun fetchArticles(){
-        val call = mApiService!!.fetchArticles(0,10,0,category_id)
+    fun fetchArticles(sort: String? = "createAt", order: String? = "desc"){
+        val call = mApiService!!.fetchArticles(0,50,2,category_id, sort, order)
         call.enqueue(object: Callback<ResultArticle>{
             override fun onFailure(call: Call<ResultArticle>, t: Throwable) {}
             override fun onResponse(call: Call<ResultArticle>, response: Response<ResultArticle>) {
@@ -61,8 +64,22 @@ class HomeFragment : Fragment(){
                     mArticles.addAll(result.articles!!)
                     mAdapter!!.notifyDataSetChanged()
 
+                    popularProgress.visibility = View.VISIBLE
+                    topArticleImage.visibility = View.GONE
                     Picasso.get().load(popular.imageUrl)
-                        .into(topArticleImage)
+                        .error(ContextCompat.getDrawable(context!!, R.drawable.no_photo)!!)
+                        .into(topArticleImage, object: com.squareup.picasso.Callback{
+                            override fun onSuccess() {
+                                popularProgress.visibility = View.GONE
+                                topArticleImage.visibility = View.VISIBLE
+                            }
+
+                            override fun onError(e: Exception?) {
+                                popularProgress.visibility = View.GONE
+                                topArticleImage.visibility = View.VISIBLE
+                            }
+
+                        })
                     topArticleTitle.text = popular.title
                     topArticleCommentCount.text = popular.comment_count!!.toString()
                     topArticleDate.text = popular.createAt!!

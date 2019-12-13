@@ -1,9 +1,6 @@
 package me.sedaph.newsapp.rest
 
-import me.sedaph.newsapp.model.Article.ResultAddArticle
-import me.sedaph.newsapp.model.Article.ResultArticle
-import me.sedaph.newsapp.model.Article.ResultDetailArticle
-import me.sedaph.newsapp.model.Article.ResultView
+import me.sedaph.newsapp.model.Article.*
 import me.sedaph.newsapp.model.Category.ResultCategory
 import me.sedaph.newsapp.model.Image.ResultImage
 import me.sedaph.newsapp.model.User.ResultLogin
@@ -22,10 +19,18 @@ interface APIService {
     @GET("articles")
     fun fetchArticles(
             @Query("offset") offset: Int? = 0,
-            @Query("limit") limit: Int? = 10,
-            @Query("type") type: Int? = 0,
-            @Query("category") category: Int? = 0
+            @Query("limit") limit: Int? = 50,
+            @Query("type") type: Int? = 2,
+            @Query("category") category: Int? = 0,
+            @Query("sort") sort: String? = "createAt",
+            @Query("order") order: String? = "desc"
         ): Call<ResultArticle>
+
+    @POST("article_search")
+    @FormUrlEncoded
+    fun searchArticle(
+        @Field("query") query: String? = null
+    ): Call<ResultSearch>
 
     @GET("articles")
     fun detailArticle(

@@ -16,6 +16,14 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@color/colorGrey">
+
+            <ProgressBar
+                android:id="@+id/popularProgress"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="gone"
+                android:layout_centerInParent="true"/>
+
             <ImageView
                 android:id="@+id/topArticleImage"
                 android:layout_width="match_parent"

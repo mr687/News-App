@@ -4,30 +4,63 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/articleCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="@dimen/main_elevation"
         app:cardUseCompatPadding="true"
         app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/colorWhite"
         style="@style/Widget.MaterialComponents.CardView">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/articleImage"
+            <RelativeLayout
+                android:id="@+id/sdfhgsdf"
                 android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:src="@drawable/ic_launcher_background"
-                android:scaleType="centerCrop"
-                android:layout_alignParentStart="true"
-                android:layout_marginRight="5dp"/>
+                android:layout_height="110dp">
+
+                <ProgressBar
+                    android:id="@+id/homeProgress"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"/>
+
+                <RelativeLayout
+                    android:id="@+id/homeThumbnailContainer"
+                    android:layout_width="110dp"
+                    android:visibility="gone"
+                    android:layout_height="110dp">
+
+                    <com.google.android.youtube.player.YouTubeThumbnailView
+                        android:id="@+id/homeThumbnailView"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_play_circle"
+                        android:layout_centerInParent="true"/>
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/articleImage"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:src="@drawable/ic_launcher_background"
+                    android:scaleType="centerCrop"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginRight="5dp"/>
+
+            </RelativeLayout>
 
             <RelativeLayout
-                android:layout_toRightOf="@id/articleImage"
+                android:layout_toRightOf="@id/sdfhgsdf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp">
@@ -61,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:text="100"
                     android:layout_below="@id/articleContentPreview"
-                    android:drawableStart="@drawable/ic_mode_comment"
+                    android:drawableStart="@drawable/ic_visibility"
                     android:drawablePadding="3dp"
                     android:layout_toRightOf="@id/articleDate"
                     android:layout_marginStart="8dp"
@@ -69,6 +102,6 @@
             </RelativeLayout>
 
         </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

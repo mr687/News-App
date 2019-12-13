@@ -2,15 +2,33 @@ package me.sedaph.newsapp.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import kotlinx.android.synthetic.main.main_bottom_sheet.view.*
+import me.sedaph.newsapp.R
 import me.sedaph.newsapp.model.User.User
 
 class Prefs (context: Context) {
     val PREFS_FILENAME = "me.sedaph.prefs"
+    val LAYOUT_TYPE = "layout_type"
+    val LAYOUT_GRID = R.id.settingGrid
+    val LAYOUT_LIST = R.id.settingList
+    val SORT_BY_NEWEST_ARTICLES = R.id.sortNewest
+    val SORT_BY_OLDER_ARTICLES = R.id.sortOlder
+    val SORT_BY_MOST_VIEWED = R.id.sortMostViewed
+    val SORT_BY_FEWEST_VIEWS = R.id.sortFewestViews
+    val SORT_BY = "sort_by"
     private val USER_ID = "uid"
     private val USER_IMAGE = "user_image"
     private val USER_NAME = "user_name"
     private val USER_TOKEN = "user_token"
     private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, 0)
+
+    var layout: Int?
+        get() = prefs.getInt(LAYOUT_TYPE,LAYOUT_LIST)
+        set(value) = prefs.edit().putInt(LAYOUT_TYPE, value!!).apply()
+
+    var sorting: Int?
+        get() = prefs.getInt(SORT_BY, SORT_BY_NEWEST_ARTICLES)
+        set(value) = prefs.edit().putInt(SORT_BY, value!!).apply()
 
     var userId: Int
         get() = prefs.getInt(USER_ID, 0)

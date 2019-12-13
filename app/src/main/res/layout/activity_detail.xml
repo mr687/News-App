@@ -67,7 +67,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
-                        android:drawableStart="@drawable/ic_mode_comment"
+                        android:drawableStart="@drawable/ic_visibility"
                         android:text="100"
                         android:layout_below="@id/articleCategory"
                         android:layout_alignParentEnd="true"/>
