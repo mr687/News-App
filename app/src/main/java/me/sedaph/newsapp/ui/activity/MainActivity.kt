@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         item ->
         when(item.itemId) {
             R.id.navHome -> {
-                if(prefs!!.layout!! == R.id.settingList){
+                if(prefs!!.layout!! == R.id.settingGrid){
                     loadFragment(homeFragment)
                 }else{
                     loadFragment(gridFragment)
