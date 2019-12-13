@@ -34,7 +34,6 @@
                         android:id="@+id/articleTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Judul berita"
                         android:textStyle="bold"
                         android:textSize="18sp"/>
 
@@ -43,7 +42,6 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Technology"
                         android:layout_below="@id/articleTitle"
                         android:paddingTop="2dp"
                         android:paddingBottom="2dp"
@@ -59,7 +57,6 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
                         android:drawableStart="@drawable/ic_access_time"
-                        android:text="September 04, 2019 55:11:22"
                         android:layout_below="@id/articleCategory"/>
 
                     <TextView
@@ -68,7 +65,6 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
                         android:drawableStart="@drawable/ic_visibility"
-                        android:text="100"
                         android:layout_below="@id/articleCategory"
                         android:layout_alignParentEnd="true"/>
 
@@ -76,11 +72,11 @@
                         android:id="@+id/articleContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="lorem ipsum dolor sit amet"
                         android:layout_below="@id/articleCommentCount"
                         android:layout_marginTop="15dp"/>
 
                     <TextView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"

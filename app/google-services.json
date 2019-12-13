@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "42767019748",
+    "firebase_url": "https://newsapp-7f70c.firebaseio.com",
+    "project_id": "newsapp-7f70c",
+    "storage_bucket": "newsapp-7f70c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42767019748:android:73c705537ec0dc757746f1",
+        "android_client_info": {
+          "package_name": "me.sedaph.newsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "42767019748-apr7de594j7h0l5k79ej8boia5q9c0rm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFFO0yCyqct4NWrbASAZD5vu-IQIQbPcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "42767019748-apr7de594j7h0l5k79ej8boia5q9c0rm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

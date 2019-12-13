@@ -6,21 +6,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.LinearLayout
 import android.widget.RadioGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
+import com.pusher.pushnotifications.PushNotifications
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.main_bottom_sheet.*
 import kotlinx.android.synthetic.main.main_toolbar.*
 import me.sedaph.newsapp.R
 import me.sedaph.newsapp.ui.fragment.*
@@ -47,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 if(prefs!!.layout!! == R.id.settingGrid){
                     loadFragment(gridFragment)
                 }else{
-                    loadFragment(homeFragment)
+                    loadFragment(homeFragment   )
                 }
                 supportActionBar!!.title = "News App"
                 return@OnNavigationItemSelectedListener true
@@ -90,6 +87,9 @@ class MainActivity : AppCompatActivity() {
         addFragment()
 
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        PushNotifications.start(applicationContext, "a20fcf46-8e37-449d-bc4c-d3dc46bd55a8")
+        PushNotifications.addDeviceInterest("43bku3gfyurgoe8g43ouergfleufi3")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
