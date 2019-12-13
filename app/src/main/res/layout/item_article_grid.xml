@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/articleCardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/main_elevation"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/colorWhite"
+        style="@style/Widget.MaterialComponents.CardView">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/sdfhgsdf"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+                <ProgressBar
+                    android:id="@+id/homeProgress"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"/>
+
+                <RelativeLayout
+                    android:id="@+id/homeThumbnailContainer"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="150dp">
+
+                    <com.google.android.youtube.player.YouTubeThumbnailView
+                        android:id="@+id/homeThumbnailView"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_play_circle"
+                        android:layout_centerInParent="true"/>
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/articleImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:src="@drawable/ic_launcher_background"
+                    android:scaleType="centerCrop"
+                    android:layout_alignParentStart="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_below="@id/sdfhgsdf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+                <TextView
+                    android:id="@+id/articleTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Google deserts desserts: Android 10 is the official"
+                    android:maxLines="2"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/articleContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="lorem ipsum dolor sit amet.lorem ipsum dolor sit amet."
+                    android:maxLines="2"
+                    android:layout_below="@id/articleTitle"/>
+                <TextView
+                    android:id="@+id/articleDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="September 04, 2019"
+                    android:layout_below="@id/articleContent"
+                    android:drawableStart="@drawable/ic_access_time"
+                    android:drawablePadding="3dp"
+                    android:textSize="13sp"/>
+                <TextView
+                    android:id="@+id/articleCommentCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    android:layout_below="@id/articleDate"
+                    android:drawableStart="@drawable/ic_visibility"
+                    android:drawablePadding="3dp"
+                    android:textSize="13sp"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

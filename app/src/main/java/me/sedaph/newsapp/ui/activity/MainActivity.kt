@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     // Initialize fragment
     private var homeFragment: HomeFragment = HomeFragment()
+    private var gridFragment: ArticleGridFragment = ArticleGridFragment()
     private var profileFragment: ProfileFragment = ProfileFragment()
     private var categoryFragment: CategoryFragment = CategoryFragment()
     private var videoFragment: VideoFragment = VideoFragment()
@@ -43,7 +44,11 @@ class MainActivity : AppCompatActivity() {
         item ->
         when(item.itemId) {
             R.id.navHome -> {
-                loadFragment(homeFragment)
+                if(prefs!!.layout!! == R.id.settingList){
+                    loadFragment(homeFragment)
+                }else{
+                    loadFragment(gridFragment)
+                }
                 supportActionBar!!.title = "News App"
                 return@OnNavigationItemSelectedListener true
             }
@@ -161,10 +166,12 @@ class MainActivity : AppCompatActivity() {
                     dialogBottom!!.dismiss()
                 }
                 settingGrid.setOnClickListener {
+                    loadFragment(gridFragment)
                     prefs!!.layout = prefs!!.LAYOUT_GRID
                     dialogBottom!!.dismiss()
                 }
                 settingList.setOnClickListener {
+                    loadFragment(homeFragment)
                     prefs!!.layout = prefs!!.LAYOUT_LIST
                     dialogBottom!!.dismiss()
                 }
@@ -188,7 +195,15 @@ class MainActivity : AppCompatActivity() {
         fragmentManager.beginTransaction().add(R.id.fragmentContainer,videoFragment, "4").hide(videoFragment).commit()
         fragmentManager.beginTransaction().add(R.id.fragmentContainer,favoriteFragment, "3").hide(favoriteFragment).commit()
         fragmentManager.beginTransaction().add(R.id.fragmentContainer,profileFragment, "2").hide(profileFragment).commit()
-        fragmentManager.beginTransaction().add(R.id.fragmentContainer,homeFragment, "1").commit()
+        if(prefs!!.layout!! == R.id.settingGrid){
+            fragmentManager.beginTransaction().add(R.id.fragmentContainer,homeFragment, "6").hide(homeFragment).commit()
+            fragmentManager.beginTransaction().add(R.id.fragmentContainer,gridFragment, "1").commit()
+            fragmentActive = gridFragment
+        }else{
+            fragmentManager.beginTransaction().add(R.id.fragmentContainer,gridFragment, "6").hide(gridFragment).commit()
+            fragmentManager.beginTransaction().add(R.id.fragmentContainer,homeFragment, "1").commit()
+            fragmentActive = homeFragment
+        }
     }
 
     private fun loadFragment(fragment: Fragment){

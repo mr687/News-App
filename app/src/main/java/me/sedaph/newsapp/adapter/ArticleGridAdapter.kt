@@ -2,7 +2,6 @@ package me.sedaph.newsapp.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,15 @@ import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubeThumbnailLoader
 import com.google.android.youtube.player.YouTubeThumbnailView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.detail_toolbar.*
 import kotlinx.android.synthetic.main.item_article.view.*
+import kotlinx.android.synthetic.main.item_article.view.articleCommentCount
+import kotlinx.android.synthetic.main.item_article.view.articleDate
+import kotlinx.android.synthetic.main.item_article.view.articleImage
+import kotlinx.android.synthetic.main.item_article.view.articleTitle
+import kotlinx.android.synthetic.main.item_article.view.homeProgress
+import kotlinx.android.synthetic.main.item_article.view.homeThumbnailContainer
+import kotlinx.android.synthetic.main.item_article.view.homeThumbnailView
+import kotlinx.android.synthetic.main.item_article_grid.view.*
 import me.sedaph.newsapp.R
 import me.sedaph.newsapp.model.Article.Article
 import me.sedaph.newsapp.ui.activity.DetailActivity
@@ -23,15 +29,24 @@ import me.sedaph.newsapp.utils.App
 import me.sedaph.newsapp.utils.Constants
 import java.lang.Exception
 
-class ArticlesAdapter (private val context: Context?,
-                       private val articles: List<Article>):
-    RecyclerView.Adapter<ArticlesAdapter.ArticleHolder>() {
+class ArticleGridAdapter(private val context: Context?, private val articles: List<Article>): RecyclerView.Adapter<ArticleGridAdapter.ArticleHolder>(){
+    class ArticleHolder(view: View) : RecyclerView.ViewHolder(view){
+        val articleTitle = view.articleTitle!!
+        val articleContentPreview= view.articleContent!!
+        val articleDate= view.articleDate!!
+        val articleCommentCount= view.articleCommentCount!!
+        val articleImage= view.articleImage!!
+        val articleCardView = view.articleCardView2!!
+        val homeThumbnailContainer = view.homeThumbnailContainer!!
+        val homeThumbnailView = view.homeThumbnailView!!
+        val homeProgress = view.homeProgress!!
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ArticleHolder {
-        val root = LayoutInflater.from(context).inflate(R.layout.item_article, parent, false)
+        val root = LayoutInflater.from(context).inflate(R.layout.item_article_grid, parent, false)
         return ArticleHolder(root)
     }
 
@@ -122,18 +137,6 @@ class ArticlesAdapter (private val context: Context?,
                     })
             }
         }
-    }
-
-    class ArticleHolder(view: View) : RecyclerView.ViewHolder(view){
-        val articleTitle = view.articleTitle!!
-        val articleContentPreview = view.articleContentPreview!!
-        val articleDate= view.articleDate!!
-        val articleCommentCount= view.articleCommentCount!!
-        val articleImage= view.articleImage!!
-        val articleCardView = view.articleCardView!!
-        val homeThumbnailContainer = view.homeThumbnailContainer!!
-        val homeThumbnailView = view.homeThumbnailView!!
-        val homeProgress = view.homeProgress
     }
 
 }
